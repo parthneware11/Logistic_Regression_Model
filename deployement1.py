@@ -12,9 +12,9 @@ def load_model():
     return data
 
 data = load_model()
-lr = data['model']
-le = data['label_encoders']
-feature = data['features']
+model = data['lr']
+label_encoders = data['le']
+features = data['feature']
 
 try:
     with open("titanic_model.pkl", "rb") as f:
@@ -72,5 +72,6 @@ if st.button("🔎 Predict Survival"):
 
 st.markdown("---")
 st.caption("Model: Logistic Regression | Built with ❤️ using Streamlit")
+
 
 
