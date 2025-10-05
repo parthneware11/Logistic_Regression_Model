@@ -12,7 +12,7 @@ def load_model():
     return data
 
 data = load_model()
-model = data['model']
+lr = data['model']
 le = data['label_encoders']
 feature = data['features']
 
@@ -72,4 +72,5 @@ if st.button("🔎 Predict Survival"):
 
 st.markdown("---")
 st.caption("Model: Logistic Regression | Built with ❤️ using Streamlit")
+
 
