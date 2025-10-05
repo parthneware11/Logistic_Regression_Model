@@ -5,10 +5,24 @@ import pickle
 # -------------------------------
 # Load the saved dictionary model
 # -------------------------------
-with open("titanic_model.pkl", "rb") as f:
-    loaded = pickle.load(f)
+@st.cache_resource
+def load_model():
+    with open("titanic_model.pkl", "rb") as f:
+        data = pickle.load(f)
+    return data
 
-model = loaded['model']  # Extract the actual model
+data = load_model()
+model = data['model']
+le = data['label_encoders']
+feature = data['features']
+
+try:
+    with open("titanic_model.pkl", "rb") as f:
+        data = pickle.load(f)
+except Exception as e:
+    st.error(f"Error loading pickle: {e}")
+    raise
+# Extract the actual model
 # If you ever need label encoders, you can use: encoders = loaded['label_encoders']
 
 # -------------------------------
@@ -58,3 +72,4 @@ if st.button("🔎 Predict Survival"):
 
 st.markdown("---")
 st.caption("Model: Logistic Regression | Built with ❤️ using Streamlit")
+
